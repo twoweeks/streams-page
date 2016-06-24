@@ -1,0 +1,37 @@
+@mixin transition($sec) {
+	-webkit-transition: all $sec ease-in-out;
+	   -moz-transition: all $sec ease-in-out;
+			    transition: all $sec ease-in-out;
+}
+
+@mixin box-shadow($shadow...) {
+	-webkit-box-shadow: $shadow;
+	   -moz-box-shadow: $shadow;
+		      box-shadow: $shadow;
+}
+
+@mixin user-select($select) {
+	-webkit-user-select: $select;
+	   -moz-user-select: $select;
+			    user-select: $select;
+}
+
+@mixin keyframes($animation) {
+	@-webkit-keyframes #{$animation} {
+		@content;
+	}
+
+	@-moz-keyframes #{$animation} {
+		@content;
+	}
+
+	@keyframes #{$animation} {
+		@content;
+	}
+}
+
+@mixin animation($animation-settings) {
+	-webkit-animation: $animation-settings;
+	   -moz-animation: $animation-settings;
+			    animation: $animation-settings;
+}

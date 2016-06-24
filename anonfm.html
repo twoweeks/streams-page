@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Стрим Радио Анонимус &ndash; TWG</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="/files/code/style.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="stream-container">
+		<embed class="player" src="https://cybergame.tv/players/cyberplayer43.swf" type="application/x-shockwave-flash" flashvars="channel=fiuu" allowfullscreen="true" allowscriptaccess="always" pluginspage="https://get.adobe.com/ru/flashplayer/">
+		<div class="feedback-block">
+			<iframe src="about:blank" class="chat"></iframe>
+			<div class="chat-buttons">
+				<span>Как загрузить чат?</span>
+				<button onclick="chat_on_page();">здесь</button> <button onclick="chat_on_window();">во отдельном окне</button>
+			</div>
+			<hr>
+			<p>Конференция Радио Анонимус находится здесь:<br><a class="kbd" href="mumble://mumble-de.cleanvoice.ru:56611" target="_blank">mumble://<wbr>mumble-de.<wbr>cleanvoice.ru<wbr>:56611</a></p>
+			<br>
+			<p><a href="https://github.com/mumble-voip/mumble/releases/" target="_blank">Скачать Mumble</a></p>
+			<br><br>
+			<p>Поток радивы для плееров: rtmp://stream1.cybergame.tv:1936/<wbr>repeater1/fiuu<br>(если не работает, попробуйте поменять в адресе 1 на 2)</p>
+			<hr>
+			<button onclick="fb_hide();">скрыть это серое пространство</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+		"use strict";
+		var feedback_lnk = 'anon.fm/feedback/';
+
+		function fb_hide() {
+			document.querySelector('.feedback-block').style.display = 'none';
+			document.querySelector('.player').style.width = '100%';
+		}
+
+		function chat_on_page() {
+			document.querySelector('.chat-warning').style.display = 'none';
+			document.querySelector('.chat').style.display = 'block';
+			document.querySelector('.chat').setAttribute('src', 'https://' + feedback_lnk);
+		}
+
+		function chat_on_window() {
+			window.open('https://' + feedback_lnk,'ayylmao','location,width=490,height=260,top=0');
+		}
+	</script>
+</body>
+</html>

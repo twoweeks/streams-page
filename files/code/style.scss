@@ -1,0 +1,162 @@
+@import "scss/mixins";
+@import "scss/main";
+
+@include keyframes(alive) {
+	$alive-anim-size: 300px;
+	$alive-anim-color: #d6d6d7;
+
+	0% {
+		width: 0;
+		height: 0;
+		margin-left: 0;
+		margin-top: 0;
+		@include box-shadow(0 0 3px 1px $alive-anim-color, inset 0 0 3px 1px $alive-anim-color);
+	}
+
+	100% {
+		width: $alive-anim-size;
+		height: $alive-anim-size;
+		margin-left: -($alive-anim-size/2);
+		margin-top: -($alive-anim-size/2);
+		@include box-shadow(0 0 25px 3px $alive-anim-color, inset 0 0 25px 3px $alive-anim-color);
+	}
+}
+
+.container {
+	font-size: 16px;
+	display: flex;
+	align-items: center;
+}
+
+@import "scss/anonfm";
+
+.content {
+	& {
+		width: 650px;
+		color: #000;
+		padding: 5px;
+
+		overflow-y: scroll;
+
+		text-align: center;
+		margin: 0 auto;
+	}
+
+	hr {
+		margin: 5px 0px;
+	}
+
+	section h3 {
+		margin-bottom: 5px;
+	}
+
+	.participant-block {
+		& {
+			padding: 5px 10px;
+			margin: 2.5px;
+
+			color: #fff;
+			border-radius: 10px;
+
+			display: inline-block;
+
+			text-decoration: none;
+
+			@include transition(.3s);
+			@include user-select(none);
+			position: relative;
+
+			@extend .inline-middle;
+		}
+
+		&.livenow {
+			& {
+				overflow: hidden;
+			}
+
+			&:before {
+				@include animation(alive 1500ms infinite ease-in);
+			}
+
+			&:after {
+				@include animation(alive 1500ms infinite 750ms ease-in);
+			}
+
+			&:before, &:after {
+				content: '';
+				display: block;
+				position: absolute;
+				width: 0; height: 0;
+				border-radius: 999px;
+				top: 50%; left: 50%;
+				@include box-shadow(0 0 3px 1px #a68ed2,inset 0 0 3px 1px #a68ed2);
+				z-index: 1;
+			}
+		}
+
+		.st-name {
+			padding-left: 25px;
+			background-repeat: no-repeat;
+			background-position: left center;
+			background-size: 20px 20px;
+		}
+
+		@each $service, $color in (twitch, #6441a5), (hitbox, #9c0), (youtube, #cd201f), (goodgame, #233056), (anonfm, #996793) {
+			&[data-service="#{$service}"] {
+				& {
+					background-color: $color;
+					&:hover {
+						@if $service == hitbox {
+							background-color: lighten($color, 5%);
+						} @else {
+							background-color: lighten($color, 10%);
+						}
+					}
+				}
+				.st-name {
+					background-image: url(/files/img/s-icons/#{$service}.png);
+				}
+			}
+		}
+
+		@each $blog, $color in (blogger, #f57d00), (twitter, #55acee), (vk, #45668e), (tumblr, #35465c), (standalone, #09C591) {
+			&[data-blog="#{$blog}"] {
+				& {
+					background-color: $color;
+					&:hover {
+						@if $blog == standalone {
+							background-color: lighten($color, 5%);
+						} @else {
+							background-color: lighten($color, 10%);
+						}
+					}
+				}
+				.st-name {
+					background-image: url(/files/img/b-icons/#{$blog}.png);
+				}
+			}
+		}
+	}
+
+	footer {
+		& {
+			font-size: 0.8em;
+		}
+
+		a {
+			&, &:visited {
+				color: #FF6600;
+			}
+
+			&:hover {
+				color: #0066FF !important;
+			}
+		}
+	}
+}
+
+@media screen and (max-width:549px) {
+	.content {
+		width: 100%;
+	}
+}
